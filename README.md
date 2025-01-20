@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+# Weather Forecast App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React application provides weather data for a specific location. It displays the current temperature, weather conditions, and a 3-day weather forecast. The application is built using modular and reusable components.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Fetch weather data using the [http://tinyurl.com/bdeswm7x](http://tinyurl.com/bdeswm7x)
+- Display current temperature, weather description, sunrise/sunset times, wind speed, and a weather icon.
+- Provide a 3-day weather forecast with daily high/low temperatures, weather conditions, and more.
+- Responsive design for different screen sizes.
+- Graceful error handling with appropriate messages.
 
-### `npm start`
+## Folder Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+TEST-APP
+├── src
+│   ├── api
+│   │   └── weatherApi.js     // API call to fetch weather data
+│   ├── components
+│   │   ├── LocationForm.js   // Form to input latitude and longitude
+│   │   ├── WeatherCard.js    // Displays current weather and forecast
+│   │   └── WeatherForecast.js // Displays 3-day forecast
+│   ├── constants
+│   │   └── weatherDescriptions.js // Weather code descriptions
+│   ├── styles
+│   │   ├── App.css
+│   │   ├── LocationForm.css
+│   │   ├── WeatherCard.css
+│   │   └── WeatherForecast.css
+│   ├── utils
+│   │   ├── dateUtils.js      // Date formatting utilities
+│   │   └── weatherIcons.js   // Utility for weather icons
+│   ├── App.js                // Main app component
+│   └── index.js              // App entry point
+├── public
+│   └── index.html
+└── README.md                 // Documentation (this file)
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd TEST-APP
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+5. Open the app in your browser at [http://localhost:3000](http://localhost:3000).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+1. Enter the latitude and longitude of the desired location in the provided input fields.
+2. Click "Get Weather" to fetch and display the weather data.
+3. View the current weather conditions, including temperature, weather description, and sunrise/sunset times.
+4. Check the 3-day weather forecast below the current weather section.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. LocationForm
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **File:** `src/components/LocationForm.js`
+- **Purpose:** Allows users to input latitude and longitude.
+- **Props:**
+  - `onSubmit`: Callback function to handle form submission.
 
-### `npm run eject`
+### 2. WeatherCard
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **File:** `src/components/WeatherCard.js`
+- **Purpose:** Displays current weather and forecast data.
+- **Props:**
+  - `weatherData`: Object containing weather data from the API.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. WeatherForecast
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **File:** `src/components/WeatherForecast.js`
+- **Purpose:** Displays a 3-day weather forecast.
+- **Props:**
+  - `daily`: Daily weather data from the API.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. weatherDescriptions
 
-## Learn More
+- **File:** `src/constants/weatherDescriptions.js`
+- **Purpose:** Contains mappings of weather codes to descriptive text.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Utilities
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **dateUtils.js**: Provides date formatting functions.
+- **weatherIcons.js**: Maps weather codes to emoji icons for visualization.
 
-### Code Splitting
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **API URL can be found here:** http\://tinyurl.com/bdeswm7x
+- The `weatherApi.js` file handles API calls using `axios`. The following parameters are used:
+  - `latitude`
+  - `longitude`
+  - `current_weather`
+  - `daily` (includes `weathercode`, `temperature_2m_max`, `temperature_2m_min`, `sunrise`, `sunset`)
+  - `timezone`
 
-### Analyzing the Bundle Size
+## Error Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- If the API call fails, an error message is displayed to the user.
+- Form input validation ensures that latitude and longitude are required before submission.
 
-### Making a Progressive Web App
+## Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- The app is styled using CSS for a clean and engaging UI.
+- Responsive design ensures usability on various screen sizes.
 
-### Advanced Configuration
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To deploy the app, build the project using:
 
-### Deployment
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Then, serve the `build` directory using a static server or deploy it to a platform like Netlify or Vercel.
 
-### `npm run build` fails to minify
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Developed by Kavya Chirukuri.
